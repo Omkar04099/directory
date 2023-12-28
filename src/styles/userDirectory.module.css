@@ -1,0 +1,29 @@
+.container h2{
+    text-align: center;
+}
+
+.container ul{
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.container ul a li{
+    border: 1px solid black;
+    padding:0.5rem 1rem;
+    margin: 1rem 2rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    background-color: #d3eafd;
+}
+
+.container ul a li:hover{
+    box-shadow: 10px;
+    cursor: pointer;
+}
+
+.container ul a{
+    text-decoration: none;
+    
+}

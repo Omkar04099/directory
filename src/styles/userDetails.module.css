@@ -1,0 +1,64 @@
+.nameAddress{
+    display: flex;
+    justify-content: space-between;
+}
+
+.userNamePhrase{
+    display: flex;
+    align-items: center;
+}
+
+.emailPhone{
+    display: flex;
+}
+
+.moreDetails{
+    display: flex;
+    justify-content: space-between;
+}
+
+.posts{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.header select{
+    font-size: 1rem;
+}
+
+.header a button{
+    cursor: pointer;
+    background-color: aliceblue;
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+h3{
+    text-align: center;
+}
+
+.personalDetails{
+    border: 1px solid;
+    margin: 1rem;
+    padding: 1rem 3rem;
+    border-radius: 15px;
+}
+
+.cardContainer{
+    border: 1px solid;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.cardContainer h6{
+    font-size: 1.2rem;
+    text-align: center;
+}
