@@ -48,7 +48,7 @@ const UserDetails = () => {
 
     const fetchCountries = async () => {
       try {
-        const response = await fetch('http://worldtimeapi.org/api/timezone');
+        const response = await fetch('https://worldtimeapi.org/api/timezone');
         const data = await response.json();
         setCountries(data);
       } catch (error) {
@@ -77,7 +77,7 @@ const UserDetails = () => {
 
   const fetchTime = async (value) => {
     try {
-      const response = await fetch(`http://worldtimeapi.org/api/timezone/${value}`);
+      const response = await fetch(`https://worldtimeapi.org/api/timezone/${value}`);
       const data = await response.json();
       const timeString = data.datetime.slice(11, 19);
       const [hours, minutes, seconds] = timeString.split(':').map(Number);
