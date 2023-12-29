@@ -5,7 +5,6 @@
 
 .userNamePhrase{
     display: flex;
-    align-items: center;
 }
 
 .emailPhone{
@@ -19,7 +18,7 @@
 
 .posts{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns:auto auto auto;
 }
 
 .header{
@@ -31,14 +30,32 @@
 
 .header select{
     font-size: 1rem;
-}
+    padding: 0.6rem 1rem;
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+ .header select:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
 
 .header a button{
     cursor: pointer;
     background-color: aliceblue;
-    font-size: 0.9rem;
+    font-size: 1rem;
     border-radius: 5px;
-}
+    padding: 0.3rem 1rem;
+    border: 1px solid; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+ .header a button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
 
 h3{
     text-align: center;
@@ -80,9 +97,67 @@ h3{
     color: white;
     padding: 0.1rem 2rem;
 }
-.btn{
-    background-color: rgb(182,215,168);
+
+
+.btn {
+    background-color: rgb(182, 215, 168);
     border: none;
     font-size: 0.9rem;
     cursor: pointer;
-}
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+
+
+/* Mobile Devices */
+@media only screen and (max-width: 767px) {
+    .nameAddress, .userNamePhrase, .emailPhone, .moreDetails, .posts, .header, .personalDetails, .cardContainer, .clockAndBtn {
+      flex-wrap: wrap;
+    }
+    
+    .personalDetails {
+        display: block;
+        padding: 1rem 1rem;
+    }
+
+    .clockAndBtn{
+        justify-content: center;
+        margin: 1rem;
+        overflow: hidden;
+    }
+
+    .header select {
+      margin: 1rem 0rem 1rem 0rem;
+      text-align: center;
+    }
+  
+    .header a button {
+      margin-top: 1rem; /* Add space between elements */
+    }
+
+    .posts{
+        grid-template-columns:auto
+    }
+  }
+  
+  /* Tablets */
+  @media only screen and (min-width: 768px) and (max-width: 990px) {
+     .personalDetails{
+        padding: 1rem 1rem;
+     }
+
+     .posts{
+        grid-template-columns: auto auto;
+     }
+
+     .userNamePhrase, .emailPhone{
+        flex-direction: column;
+     }
+  }
+  
+  

@@ -74,7 +74,6 @@ const UserDetails = () => {
         date.setSeconds(seconds);
         setTime(date);
         setCurrentTime(date);
-        console.log(date);
     }catch (error){
         console.log('Error in fetching time for selected country',error);
     }
@@ -98,18 +97,17 @@ const UserDetails = () => {
         <div>
           <div className={styles.header}>
             <Link to="/"><button>Back</button></Link>
-            <div>
-            Country Dropdown: &nbsp;
-            <select id="countrySelector" defaultValue="" onChange={(e)=>{handleCountryChange(e)}}>
-              <option value=""  disabled></option>
-              {countries.map((country) => (
-                <option key={country} value={country}>
-                  {country}
-                </option>
-              ))}
-            </select>
-            </div>
             <div className={styles.clockAndBtn}>
+                <div>
+                    <select id="countrySelector" defaultValue="" onChange={(e)=>{handleCountryChange(e)}}>
+                    <option value=""  disabled>Country Dropdown</option>
+                    {countries.map((country) => (
+                        <option key={country} value={country}>
+                        {country}
+                        </option>
+                    ))}
+                    </select>
+                </div>
               <div className={styles.clock}>  
                <sup>{currentTime.toLocaleDateString()}</sup>
                <p>{currentTime.toLocaleTimeString()}{' '}</p> 
@@ -137,7 +135,7 @@ const UserDetails = () => {
           </div>
           <div className={styles.posts}>
             {post.map(p=>{
-                return(<div className={styles.cardContainer}>
+                return(<div key={p.id} className={styles.cardContainer}>
                     <h6>{p.title}</h6>
                     <p>{p.body}</p>
                 </div>)

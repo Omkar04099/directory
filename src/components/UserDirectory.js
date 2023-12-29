@@ -40,8 +40,8 @@ const UserDirectory = () => {
       <h2>Directory</h2>
       <ul>
         {users.map((user) => (
-            <Link to={`/user/${user.id}`}>
-            <li key={user.id}>
+            <Link to={`/user/${user.id}`} key={user.id}>
+            <li>
              <p> Name: {user.name} </p>    
              <p> Posts: {getPostCount(user.id)} </p> 
              </li>
