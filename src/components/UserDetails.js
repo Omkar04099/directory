@@ -7,10 +7,9 @@ const UserDetails = () => {
   const [user, setUser] = useState(null);
   const [post, setPost] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState(new Date(time));
   const [clockRunning, setClockRunning] = useState(true);
-  const [pausedTime, setPausedTime] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -54,7 +53,7 @@ const UserDetails = () => {
 
     if (clockRunning) {
       interval = setInterval(() => {
-        setCurrentTime(new Date());
+        setCurrentTime(time => new Date(time.getTime() + 1000));
       }, 1000);
     } else {
       clearInterval(interval);
@@ -63,22 +62,34 @@ const UserDetails = () => {
     return () => clearInterval(interval);
   }, [clockRunning]);
 
+  const fetchTime = async (value)=> {
+    try{
+        const response = await fetch(`http://worldtimeapi.org/api/timezone/${value}`);
+        const data = await response.json();
+        const timeString = data.datetime.slice(11,19)
+        const [hours, minutes, seconds] = timeString.split(':').map(Number);
+        const date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes);
+        date.setSeconds(seconds);
+        setTime(date);
+        setCurrentTime(date);
+        console.log(date);
+    }catch (error){
+        console.log('Error in fetching time for selected country',error);
+    }
+}
+
   const handlePauseStart = () => {
     if (clockRunning) {
-      // Pause the clock and store the paused time
       setClockRunning(false);
-      setPausedTime(new Date());
     } else {
-      // Start the clock from the paused time
       setClockRunning(true);
-      const now = new Date();
-      const timeDifference = now - pausedTime;
-      setCurrentTime(new Date(currentTime.getTime() + timeDifference));
     }
   };
 
   const handleCountryChange = (event) => {
-    setSelectedCountry(event.target.value);
+    fetchTime(event.target.value);
   };
 
   return (
@@ -89,8 +100,8 @@ const UserDetails = () => {
             <Link to="/"><button>Back</button></Link>
             <div>
             Country Dropdown: &nbsp;
-            <select id="countrySelector" value={selectedCountry} onChange={handleCountryChange}>
-              <option value="" disabled></option>
+            <select id="countrySelector" defaultValue="" onChange={(e)=>{handleCountryChange(e)}}>
+              <option value=""  disabled></option>
               {countries.map((country) => (
                 <option key={country} value={country}>
                   {country}
@@ -98,10 +109,13 @@ const UserDetails = () => {
               ))}
             </select>
             </div>
-            <p>
-              Current Time: {currentTime.toLocaleTimeString()}{' '}
-              <button onClick={handlePauseStart}>{clockRunning ? 'Pause' : 'Start'}</button>
-            </p>
+            <div className={styles.clockAndBtn}>
+              <div className={styles.clock}>  
+               <sup>{currentTime.toLocaleDateString()}</sup>
+               <p>{currentTime.toLocaleTimeString()}{' '}</p> 
+              </div>
+              <button className={styles.btn} onClick={handlePauseStart}>{clockRunning ? 'Pause' : 'Start'}</button>
+            </div>
           </div>
 
           <h3>Profile page</h3>
