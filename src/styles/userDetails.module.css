@@ -1,3 +1,14 @@
+.loader{
+  margin: auto;
+  display: flex;
+  padding-top: 10rem;
+  height: 10vh;
+}
+
+.loaderText{
+  text-align: center;
+}
+
 .nameAddress{
     display: flex;
     justify-content: space-between;
@@ -73,7 +84,14 @@ h3{
     margin: 1rem;
     padding: 1rem;
     border-radius: 15px;
-}
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+ .cardContainer:hover {
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  }
 
 .cardContainer h6{
     font-size: 1.2rem;
