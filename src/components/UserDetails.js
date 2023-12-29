@@ -10,6 +10,17 @@ const UserDetails = () => {
   const [time, setTime] = useState(new Date());
   const [currentTime, setCurrentTime] = useState(new Date(time));
   const [clockRunning, setClockRunning] = useState(true);
+  const [selectedPost, setSelectedPost] = useState();
+  
+
+  const openPopup = (post) => {
+    setSelectedPost(post);
+    console.log(post);
+  };
+
+  const closePopup = () => {
+    setSelectedPost(null);
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -135,11 +146,20 @@ const UserDetails = () => {
           </div>
           <div className={styles.posts}>
             {post.map(p=>{
-                return(<div key={p.id} className={styles.cardContainer}>
+                return(<div key={p.id} className={styles.cardContainer} onClick={() => openPopup(p)}>
                     <h6>{p.title}</h6>
                     <p>{p.body}</p>
                 </div>)
             })}
+
+            {selectedPost && (
+                <div className={styles.popupOverlay} onClick={closePopup}>
+                    <div className={styles.popupContent}>
+                        <h6>{selectedPost.title}</h6>
+                        <p>{selectedPost.body}</p>
+                    </div>
+                </div>
+            )}
           </div>
 
         </div>

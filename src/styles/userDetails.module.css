@@ -113,6 +113,34 @@ h3{
   }
   
 
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popupOverlay h6{
+    font-size: 1.5rem;
+  }
+  
+  .popupContent {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 50%;
+  }
+
+  
+
+
 
 /* Mobile Devices */
 @media only screen and (max-width: 767px) {
@@ -143,6 +171,10 @@ h3{
     .posts{
         grid-template-columns:auto
     }
+
+    .popupContent{
+        width: 100%;
+    }
   }
   
   /* Tablets */
@@ -157,6 +189,10 @@ h3{
 
      .userNamePhrase, .emailPhone{
         flex-direction: column;
+     }
+
+     .popupContent{
+        width: 60%;
      }
   }
   
